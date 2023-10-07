@@ -4,6 +4,14 @@
                     {{-- <form action="{{ route('book_comment.store', $book) }}" method="post"> --}}
                     <form wire:submit.prevent="postComment">
                     @csrf
+
+                    <div>
+                        @if (session()->has('message'))
+                            <div class="text-green-600 alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+                    </div>
                     
                     <label class="text-sm text-gray-400 pl-5">コメント入力</label>
                     <x-input-error :messages="$errors->get('comment')" class="mt-2" />

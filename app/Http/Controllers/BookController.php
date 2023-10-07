@@ -49,7 +49,7 @@ class BookController extends Controller
     public function show($id)
     {
         $book = Book::find($id);
-        $bookComments = $book->bookComments;
+        $bookComments = $book->bookComments()->orderBy('created_at', 'desc')->get();
         return view('book.show', compact('book', 'bookComments'));
     }
 

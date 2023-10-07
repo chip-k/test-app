@@ -15,20 +15,20 @@ class Comment extends Component
     public $comment;
 
     public function render()
-    {        
+    {
+        $this->book->bookComments()->orderBy('created_at', 'desc')->get();
         return view('livewire.comment');
     }
 
-    // 例
-    public function mount()
-    {
-        $this->bookComments = $this->getComments();
-    }
+    // public function mount()
+    // {
+    //     $this->bookComments = $this->getComments();
+    // }
 
-    public function getComments()
-    {
-        return BookComment::orderBy('created_at', 'desc')->get();
-    }
+    // public function getComments()
+    // {
+    //     return BookComment::orderBy('created_at', 'desc')->get();
+    // }
 
     public function postComment()
     {
@@ -50,6 +50,8 @@ class Comment extends Component
 
         // コメントフォームをクリア
         $this->comment = '';
+
+        session()->flash('message', 'コメントが投稿されました');
     }
 
 }
