@@ -13,6 +13,13 @@ class Comment extends Component
     public $book;
     public $bookComments;
     public $comment;
+    public $user_id;
+
+    protected $rules = [
+        'comment' => 'required|max:100',
+        'user_id' => 'required',
+        'book' => 'required',
+    ];
 
     public function render()
     {
@@ -32,17 +39,16 @@ class Comment extends Component
 
     public function postComment()
     {
-        // 認証済みユーザーのIDを取得
-        $user_id = auth()->id();
+        // コメントするユーザーのIDを取得
+        $this->user_id = auth()->id();
 
         // コメントの投稿処理を実行
-
-        // コメントの内容をデータベースに保存
         $newComment = new BookComment([
             'comment' => $this->comment,
-            'user_id' => $user_id,
+            'user_id' => $this->user_id,
             'book_id' => $this->book->id,
         ]);
+        $this->validate();
         $newComment->save();
 
         // コメントリストを更新
@@ -51,6 +57,7 @@ class Comment extends Component
         // コメントフォームをクリア
         $this->comment = '';
 
+        // フラッシュメッセージ
         session()->flash('message', 'コメントが投稿されました');
     }
 

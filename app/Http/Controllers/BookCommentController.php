@@ -29,18 +29,18 @@ class BookCommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(Request $request, $book)
-    // {
-    //     $user_id = auth()->id();
+    public function store(Request $request, $book)
+    {
+        // $user_id = auth()->id();
 
-    //     $bookComment = new BookComment();
-    //     $bookComment->comment = $request->comment;
-    //     $bookComment->user_id = $user_id;
-    //     $bookComment->book_id = $book;
-    //     $bookComment->save();
+        // $bookComment = new BookComment();
+        // $bookComment->comment = $request->comment;
+        // $bookComment->user_id = $user_id;
+        // $bookComment->book_id = $book;
+        // $bookComment->save();
         
-    //     return redirect()->route('book.show', $book)->with('message', 'コメントしました');
-    // }
+        // return redirect()->route('book.show', $book)->with('message', 'コメントしました');
+    }
 
     /**
      * Display the specified resource.
