@@ -7,27 +7,9 @@
                   <p class="font-bold">{{ $bookComment->user->name }}</p>
                   <p class="ml-2">・{{ $bookComment->created_at->diffForHumans() }}</p>
               </div>
-              <section>
-                  <!-- 垂直省略記号 -->
-                  <p class="justify-end"><a href="#menu" class="modal-open">⁝</a></p>
-                  
-                  <!-- メニュー -->
-                  <section id="menu" style="display: none;">
-                      <form action="{{ route('book_comment.destroy', $bookComment) }}" method="post">
-                      @csrf
-                      @method('delete')
 
-                          {{ $bookComment->user->name }}・{{ $bookComment->created_at->diffForHumans() }}
-                          <br>
-                          <div class="flex justify-between">
-                              {{ $bookComment->comment }}
-                              <x-primary-button>
-                                  <p>削除する</p>
-                              </x-primary-button>
-                          </div>
-                      </form>
-                  </section>
-              </section>
+              @include('book_comment.destroy')
+
           </div>
           <p>{{ $bookComment->comment }}</p>
       @endforeach

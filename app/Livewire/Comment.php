@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\BookComment;
 use App\Models\User;
@@ -9,11 +10,13 @@ use App\Models\Book;
 
 class Comment extends Component
 {
+    use WithPagination;
 
     public $book;
     public $bookComments;
     public $comment;
     public $user_id;
+    public $bookComment;
 
     protected $rules = [
         'comment' => 'required|max:100',
@@ -23,7 +26,7 @@ class Comment extends Component
 
     public function render()
     {
-        $this->book->bookComments()->orderBy('created_at', 'desc')->get();
+        $this->book->bookComments()->get();
         return view('livewire.comment');
     }
 
@@ -59,6 +62,11 @@ class Comment extends Component
 
         // フラッシュメッセージ
         session()->flash('message', 'コメントが投稿されました');
+    }
+
+    public function deleteComment($id)
+    {
+        BookComment::destroy($id);
     }
 
 }

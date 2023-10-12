@@ -71,9 +71,8 @@ class BookCommentController extends Controller
      */
     public function destroy(BookComment $bookComment)
     {
-        $book = $bookComment->book->id;
         $bookComment->delete();
-        return redirect()->route('book.show', $book)->with('message', '削除しました');
+        return redirect()->route('book.show', $bookComment->book_id)->with('message', '削除しました');
     }
 
 }

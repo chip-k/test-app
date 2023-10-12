@@ -28,10 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('book', BookController::class)->only(['create', 'store', 'update', 'destroy']);
+    Route::resource('book_comment', BookCommentController::class);
 });
 
 require __DIR__.'/auth.php';
 
-Route::resource('book', BookController::class);
-Route::resource('book_comment', BookCommentController::class)->except(['store']);
-Route::post('/book/{book_id}', [BookCommentController::class, 'store'])->name('book_comment.store');
+Route::resource('book', BookController::class)->except(['create', 'store', 'update', 'destroy']);

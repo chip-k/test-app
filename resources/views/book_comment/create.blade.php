@@ -1,10 +1,8 @@
       {{-- コメント入力 --}}
         <div class="p-4 flex flex-col justify-between leading-normal">
             <span id="comment-wrap">
-                    {{-- <form action="{{ route('book_comment.store', $book) }}" method="post"> --}}
-                    <form wire:submit.prevent="postComment">
-                    @csrf
-
+                <form wire:submit.prevent="postComment">
+                @csrf
                     <div>
                         @if (session()->has('message'))
                             <div class="text-green-600 alert alert-success">
