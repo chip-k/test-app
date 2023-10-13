@@ -5,11 +5,7 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto px-6 mt-6">
-        @if(session('message'))
-            <div class="text-red-600 font-bold">
-                {{ session('message') }}
-            </div>
-        @endif
+      <x-message :message="session('message')" />
         
         <div class="flex flex-col">
             <div class="-m-1.5 overflow-x-auto">
@@ -25,10 +21,10 @@
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                         @foreach ($books as $book)
-                            <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-200">{{ $book->id }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-200">{{ $book->title }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-200">{{ $book->created_at->format('Y-m-d') }}</td>
+                            <tr class="hover:bg-gray-200 dark:hover:bg-blue-200">
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-500">{{ $book->id }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-500">{{ $book->title }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-500">{{ $book->created_at->format('Y-m-d') }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <a class="text-blue-500 hover:text-blue-700" href="{{ route('book.show', $book)}}">Show</a>
                                 </td>

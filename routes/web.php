@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookCommentController;
+use App\Http\Controllers\MyPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('book', BookController::class)->only(['create', 'store', 'update', 'destroy']);
+    Route::resource('book', BookController::class)->except(['index']);
     Route::resource('book_comment', BookCommentController::class);
+    Route::get('my_page', [MyPageController::class, 'index'])->name('my_page.index');
 });
 
 require __DIR__.'/auth.php';
 
-Route::resource('book', BookController::class)->except(['create', 'store', 'update', 'destroy']);
+Route::resource('book', BookController::class)->only(['index']);

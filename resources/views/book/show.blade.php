@@ -2,11 +2,7 @@
 
 <div class="container mx-10 mt-3">
 
-    @if(session('message'))
-        <div class="text-red-600 font-bold">
-            {{ session('message') }}
-        </div>
-    @endif
+    <x-message :message="session('message')" />
 
         <div class="bg-gray-300 p-4 flex flex-col justify-between leading-normal">
             <div class="mb-8">
