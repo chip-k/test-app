@@ -14,6 +14,10 @@
                             マイページ
                         </x-nav-link>
 
+                        <x-nav-link :href="route('bookmark')" :active="request()->routeIs('bookmark')">
+                            ブックマーク
+                        </x-nav-link>
+
                         <x-nav-link :href="route('book.create')" :active="request()->routeIs('book.create')">
                             新規作成
                         </x-nav-link>

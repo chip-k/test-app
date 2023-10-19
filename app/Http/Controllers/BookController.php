@@ -88,6 +88,15 @@ class BookController extends Controller
         return redirect()->route('book.index')->with('message', '削除しました');
     }
 
+    public function bookmark_books()
+    {
+        $books = \Auth::user()->bookmark_books()->orderBy('created_at', 'desc')->paginate(10);
+        // $data = [
+        //     'books' => $books,
+        // ];
+        return view('book.bookmark', compact('books'));
+    }
+
     public function timeAgo($timestamp)
     {
         $time = Carbon::parse($timestamp);

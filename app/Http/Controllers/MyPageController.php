@@ -11,7 +11,7 @@ class MyPageController extends Controller
 {
     public function index()
     {
-        // $books = Book::get($user);
-        return view('my_page.index');
+        $books = Book::where('user_id', auth()->id())->paginate(10);
+        return view('my_page.index', compact('books'));
     }
 }

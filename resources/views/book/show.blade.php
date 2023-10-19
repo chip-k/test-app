@@ -29,6 +29,20 @@
                     </x-primary-button>
                 </form>
             </div>
+
+            @if (!Auth::user()->is_bookmark($book->id))
+                <form action="{{ route('bookmark.store', $book) }}" method="post">
+                    @csrf
+                    <button>お気に入り登録</button>
+                </form>
+            @else
+                <form action="{{ route('bookmark.destroy', $book) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <button>お気に入り解除</button>
+                </form>
+            @endif
+
         </div>
 
     @livewire('comment', compact('book', 'bookComments'))
