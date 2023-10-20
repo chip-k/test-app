@@ -28,20 +28,20 @@
                         削除する
                     </x-primary-button>
                 </form>
-            </div>
 
-            @if (!Auth::user()->is_bookmark($book->id))
-                <form action="{{ route('bookmark.store', $book) }}" method="post">
-                    @csrf
-                    <button>お気に入り登録</button>
-                </form>
-            @else
-                <form action="{{ route('bookmark.destroy', $book) }}" method="post">
-                    @csrf
-                    @method('delete')
-                    <button>お気に入り解除</button>
-                </form>
-            @endif
+                @if (!Auth::user()->is_bookmark($book->id))
+                    <form action="{{ route('bookmark.store', $book) }}" method="post">
+                        @csrf
+                        <button class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">ブックマーク登録</button>
+                    </form>
+                @else
+                    <form action="{{ route('bookmark.destroy', $book) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button class="inline-flex items-center px-4 py-2 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">ブックマーク解除</button>
+                    </form>
+                @endif
+            </div>
 
         </div>
 

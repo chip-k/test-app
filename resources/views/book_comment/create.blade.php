@@ -3,13 +3,13 @@
             <span id="comment-wrap">
                 <form wire:submit.prevent="postComment">
                 @csrf
-                    <div>
+                    {{-- <div>
                         @if (session()->has('message'))
                             <div class="text-green-600 alert alert-success">
                                 {{ session('message') }}
                             </div>
                         @endif
-                    </div>
+                    </div> --}}
                     
                     <label class="text-sm text-gray-400 pl-5">コメント入力</label>
                     <x-input-error :messages="$errors->get('comment')" class="mt-2" />

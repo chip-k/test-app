@@ -19,7 +19,7 @@
               <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead>
                   <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-gray-500 uppercase">No.</th>
+                    <th scope="col" class="px-6 py-3 text-left text-gray-500 uppercase">Name</th>
                     <th scope="col" class="px-6 py-3 text-left text-gray-500 uppercase">Title</th>
                     <th scope="col" class="px-6 py-3 text-left text-gray-500 uppercase">created_at</th>
                   </tr>
@@ -27,7 +27,7 @@
                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                     @foreach ($books as $book)
                         <tr class="hover:bg-gray-200 dark:hover:bg-blue-200">
-                            <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-500">{{ $book->id }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-500">{{ $book->user->name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-500">{{ $book->title }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-500">{{ $book->created_at->format('Y-m-d') }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

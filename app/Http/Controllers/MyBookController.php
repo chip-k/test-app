@@ -7,11 +7,11 @@ use App\Models\User;
 use App\Models\Book;
 use App\Models\BookComment;
 
-class MyPageController extends Controller
+class MyBookController extends Controller
 {
     public function index()
     {
         $books = Book::where('user_id', auth()->id())->paginate(10);
-        return view('my_page.index', compact('books'));
+        return view('my_book.index', compact('books'));
     }
 }

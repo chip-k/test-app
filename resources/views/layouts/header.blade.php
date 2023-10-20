@@ -10,8 +10,8 @@
                     </x-nav-link>
                     
                     @auth
-                        <x-nav-link :href="route('my_page.index')" :active="request()->routeIs('my_page.index')">
-                            マイページ
+                        <x-nav-link :href="route('my_book.index')" :active="request()->routeIs('my_book.index')">
+                            マイブック
                         </x-nav-link>
 
                         <x-nav-link :href="route('bookmark')" :active="request()->routeIs('bookmark')">
@@ -95,7 +95,7 @@
             </x-responsive-nav-link>
 
             @auth
-                <x-nav-link :href="route('my_page.index')" :active="request()->routeIs('my_page.index')">
+                <x-nav-link :href="route('my_book.index')" :active="request()->routeIs('my_book.index')">
                     マイページ
                 </x-nav-link>
 
