@@ -6,16 +6,32 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\BookComment;
+use App\Http\Requests\SearchBookRequest;
 
 class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(SearchBookRequest $request)
     {
-        $books = Book::paginate(10);
-        return view('book.index', compact('books'));
+        $books = Book::query();
+        $keyword = $request->input('keyword');
+
+        if (!empty($keyword)) {
+            $books->where('title', 'LIKE', "%{$keyword}%");
+        }
+
+        $books = $books->paginate(10);
+
+        if ($books->isEmpty()) {
+            $message = '該当する本が見つかりませんでした';
+            $request->session()->flash('message', $message);
+        } else {
+            $request->session()->forget('message'); 
+        }
+
+        return view('book.index', ['books' => $books]);
     }
 
     /**

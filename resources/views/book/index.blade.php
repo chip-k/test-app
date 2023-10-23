@@ -1,7 +1,29 @@
 <x-app-layout>
 
     <x-slot name="header">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">ホーム</h2>
+      <div class="flex justify-between">
+
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">ホーム</h2>
+
+        <div>
+          <h2>検索</h2>
+          <form action="{{ route('book.index') }}" method="get">
+            @csrf
+            <input type="text" name="keyword">
+            <input type="submit" value="検索">
+          </form>
+          @if ($errors->any())
+            <div>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="text-red-400">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
+        </div>
+
+      </div>
     </x-slot>
 
     <div class="max-w-7xl mx-auto px-6 mt-6">
@@ -11,6 +33,7 @@
             <div class="-m-1.5 overflow-x-auto">
               <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
+                  @if (count($books) > 0)
                   <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <thead>
                       <tr>
@@ -32,6 +55,7 @@
                         @endforeach
                     </tbody>
                   </table>
+                  @endif
                 </div>
               </div>
             </div>

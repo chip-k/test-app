@@ -23,5 +23,4 @@ class Book extends Model
         'user_id',
         'book_comment_id'
     ];
-
 }
